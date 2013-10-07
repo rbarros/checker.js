@@ -20,6 +20,17 @@
       throws(block, [expected], [message])
   */
 
+  module('jQuery#checker', {
+    setup: function() {
+      this.elems = $('#qunit-fixture').children();
+    }
+  });
+
+  test('is checker', function() {
+    expect(1);
+    strictEqual(this.elems.checker(), this.elems, 'is element this equal.')
+  });
+  /*
   module('jQuery#awesome', {
     // This will run before each test in this module.
     setup: function() {
@@ -58,5 +69,5 @@
     // Use deepEqual & .get() when comparing jQuery objects.
     deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
   });
-
+  */
 }(jQuery));
