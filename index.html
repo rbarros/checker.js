@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GruntJS</title>
+    <base href="http://127.0.0.1/checker.js/" />
+    <title>CheckerJS</title>
     <link rel="stylesheet" href="css/main.css">
+    <script src="libs/jquery/jquery.js"></script>
+    <script src="dist/Checker.min.js"></script>
+    <script>
+        jQuery(function($) {
+            $('input[name=login]').checker({
+                check: true
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>GruntJS</h1>
+    <h1>CheckerJS</h1>
+    <input name="login" />
 </body>
 </html>

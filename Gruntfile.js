@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         },
         // Task configuration.
         clean: {
-          files: ['dist']
+            files: ['dist']
         },
         connect: {
             server: {
@@ -37,13 +37,24 @@ module.exports = function(grunt) {
             }
         },
         qunit: {
-          files: ['test/**/*.html']
+            files: ['test/**/*.html']
+        },
+        uglify: {
+            options: {
+                banner: '<%= banner %>'
+            },
+            dist: {
+              files: {
+                'dist/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js']
+              }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['connect:server', 'less', 'qunit']);
+    grunt.registerTask('default', ['connect:server', 'less', 'qunit', 'uglify']);
 }

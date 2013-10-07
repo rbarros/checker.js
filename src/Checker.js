@@ -47,9 +47,9 @@
         check: false, // Ativa/desativa verificação por ajax, se desativado o plugin utilizará checkStatus
         checkStatus: 'invalid', // Status que será assumido caso o check sejá true
         blockForm: '.formChecker', // Nome da class do formulário que será bloqueado o submit
-        imgValid: '../img/valid.png',
-        imgInvalid: '../img/invalid.png',
-        imgError: '../img/error.png',
+        imgValid: 'img/valid.png',
+        imgInvalid: 'img/invalid.png',
+        imgError: 'img/error.png',
         replace: /\W/, // Expressão regular utilizada no replace do valor do elemento
         num: 4, // Apartir de quantos caracteres será iniciado a verificação do valor
         defaultCss: { // Estilo padrão do elemento
@@ -67,7 +67,7 @@
         errorText: 'O campo %s deve ser informado.', // Mensagem de error
         ajax: { // Dados para efetuar a requisição ajax atraves do jQuery
             async: false,
-            url: '../php/checker.php',
+            url: 'php/checker.php',
             type: "POST",
             data: {id: 1},
             dataType: "json"
