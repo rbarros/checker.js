@@ -23,15 +23,23 @@
 
     // Collection method.
     $.fn.checker = function(options) {
-        return this.each(function() {
-            $.data(this, 'checker', new $.checker(this, options));
-            //new $.checker(options);
-        });
+        var checker, instance = options.instance || false;
+        if (instance) {
+            this.each(function() {
+                checker = new $.checker(this, options);
+                $.data(this, 'checker', checker);
+            });
+            return checker;
+        } else {
+            return this.each(function() {
+                $.data(this, 'checker', new $.checker(this, options));
+            });
+        }
     };
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.0';
+        this.version = '1.1';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -50,7 +58,7 @@
         imgValid: 'img/valid.png',
         imgInvalid: 'img/invalid.png',
         imgError: 'img/error.png',
-        replace: /\W/, // Expressão regular utilizada no replace do valor do elemento
+        replace: /\W/g, // Expressão regular utilizada no replace do valor do elemento
         num: 4, // Apartir de quantos caracteres será iniciado a verificação do valor
         defaultCss: { // Estilo padrão do elemento
             'background-color': '#FFF',
@@ -107,17 +115,24 @@
         el.on('blur', {self: self}, self.checkValue);
     };
 
+    $.checker.prototype.setOption = function(option, value) {
+      this.options[option] = value;
+      return this;
+    },
+
     $.checker.prototype.alterCss = function() {
         if (typeof this.options.defaultCss === 'object') {
             this.debug('log', 'Alter css element');
             $(this.el).css(this.options.defaultCss);
         }
+        return this;
     };
 
     $.checker.prototype.alterPlaceholder = function() {
         var el = $(this.el), placeholder = this.options.placeholder || el.attr('placeholder') || el.attr('title') || el.attr('name');
         el.attr('placeholder', placeholder);
         this.debug('log', 'Alter placeholder element');
+        return this;
     };
 
     $.checker.prototype.checkValue = function(event) {
@@ -141,13 +156,15 @@
     };
 
     $.checker.prototype.replaceText = function() {
-        var el = $(this.el), text, pattern = this.options.replace || /\W/;
-        if (el.val() !== '') {
-            text = el.val();
-            el.val(text.replace(pattern, ''));
-        } else {
-            text = el.text();
-            el.text(text.replace(pattern, ''));
+        var el = $(this.el), text, pattern = this.options.replace || false;
+        if(pattern === false) {
+            if (el.val() !== '') {
+                text = el.val();
+                el.val(text.replace(pattern, ''));
+            } else {
+                text = el.text();
+                el.text(text.replace(pattern, ''));
+            }
         }
     };
 
@@ -177,6 +194,7 @@
             }
         }
         el.css(css);
+        return this;
     };
 
     $.checker.prototype.checkData = function() {
@@ -259,6 +277,7 @@
         if (typeof this.options.errorCss == 'object') {
             el.css(this.options.errorCss);
         }
+        return this;
     }
 
     $.checker.prototype.validCss = function() {

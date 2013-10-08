@@ -15,7 +15,9 @@ In your web page:
 <script src="dist/Checker.min.js"></script>
 <script>
     jQuery(function($) {
-        $('input[name=login]').checker();
+        $('input[name=login]').checker({
+            check: true
+        });
     });
 </script>
 
