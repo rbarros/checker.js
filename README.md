@@ -24,6 +24,8 @@ In your web page:
 <input name="login" />
 ```
 
+![input checker](https://raw.github.com/rbarros/checker.js/master/img/checker.png)
+
 ## Documentation
 _(Coming soon)_
 
