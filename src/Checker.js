@@ -23,7 +23,7 @@
 
     // Collection method.
     $.fn.checker = function(options) {
-        var checker, instance = options.instance || false;
+        var checker, instance = (typeof options == "object" && options.instance) || false;
         if (instance) {
             this.each(function() {
                 checker = new $.checker(this, options);
@@ -39,7 +39,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.1';
+        this.version = '1.1.1';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -139,6 +139,7 @@
         var self = event ? event.data.self : this, key = event ? event.which : true, el = $(self.el);
         self.replaceText();
         self.debug('log', 'Check Value');
+        self.debug('log', el.val());
         if (el.val().length > self.options.num && key !== 13) {
             self.debug('info', 'Value ' + el.val().length + ' greater than ' + self.options.num);
             self.check();

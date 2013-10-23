@@ -32,6 +32,9 @@ _(Coming soon)_
 
 ## Release History
 
+* **v1.1.1** - 2013-10-23
+   - Fix bug return instance
+
 * **v1.1.0** - 2013-10-8
    - Added option to return an instance of the checker, allowing to use the functions.
    - Fix bug in replace.
