@@ -39,7 +39,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.1.1';
+        this.version = '1.1.2';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -255,7 +255,18 @@
     $.checker.prototype.blockForm = function() {
         var self = this;
         self.debug('info', 'Block form submit');
+        self.debug('info', ['callback_submit', self.callback_submit]);
+        $('form.form-register').on('click','a', function(event) {
+            self.debug('info', ['Click anchor', this]);
+            if (!self.callback_submit) {
+                event.preventDefault();
+                self.errorStyle();
+            } else {
+                $('form.form-register').submit();
+            }
+        });
         $(self.options.blockForm).submit(function(event) {
+            self.debug('info', ['Click input', this]);
             if (!self.callback_submit) {
                 event.preventDefault();
                 self.errorStyle();
@@ -265,7 +276,7 @@
         });
     };
 
-    $.checker.errorStyle = function() {
+    $.checker.prototype.errorStyle = function() {
         var self = this, text, newtext, el = $(this.el), parent = el.parent(), child = $('<span class="login-check-error" style="margin-left:5px;"/>'), pattern = /%s/;
         self.debug('info','Alter style error.');
         if (self.options.showErrorText === true && $('.login-check-error').length <=0 ) {

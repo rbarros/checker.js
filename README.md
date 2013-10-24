@@ -34,16 +34,20 @@ _(Coming soon)_
 
 ## Release History
 
+* **v1.1.2** - 2013-10-24
+   - Fix bug blocker submit form by click a anchor.
+   - Fix bug when changing style error in the field.
+
 * **v1.1.1** - 2013-10-23
-   - Fix bug return instance
+   - Fix bug return instance.
 
 * **v1.1.0** - 2013-10-8
    - Added option to return an instance of the checker, allowing to use the functions.
    - Fix bug in replace.
 
 * **v1.0.0** - 2013-10-7
-   - Updated to v0.10.20 node correcting problems using uglify (parse.js:53)
-   - Initial release
+   - Updated to v0.10.20 node correcting problems using uglify (parse.js:53).
+   - Initial release.
 
 ## License
 > Copyright (c) 2013 Ramon Barros
