@@ -34,6 +34,10 @@ _(Coming soon)_
 
 ## Release History
 
+* **v1.2.0** - 2013-11-25
+   - Add option ```notificationStyle```, ```showSuccessText``` and ```successCss```
+   - Fix bug border style.
+
 * **v1.1.2** - 2013-10-24
    - Fix bug blocker submit form by click a anchor.
    - Fix bug when changing style error in the field.
