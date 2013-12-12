@@ -53,12 +53,15 @@
     $.checker.options = {
         debug: false, // Ativa/desativa o debug do plugin
         check: false, // Ativa/desativa verificação por ajax, se desativado o plugin utilizará checkStatus
+        keyup: true, // Ativa/desativa verificação por keyup
+        blur: true, // Ativa/desativa verificação por blur
         checkStatus: 'invalid', // Status que será assumido caso o check sejá true
         blockForm: '.formChecker', // Nome da class do formulário que será bloqueado o submit
         imgValid: 'img/valid.png',
         imgInvalid: 'img/invalid.png',
         imgError: 'img/error.png',
-        replace: /\W/g, // Expressão regular utilizada no replace do valor do elemento
+        pattern: /\W/g, // Expressão regular utilizada no replace do valor do elemento
+        replace: '', // Elemento que será substituido no replace
         num: 4, // Apartir de quantos caracteres será iniciado a verificação do valor
         defaultCss: { // Estilo padrão do elemento
             'background-color': '#FFF',
@@ -116,8 +119,12 @@
         this.alterCss();
         this.alterPlaceholder();
         this.checkValue();
-        el.on('keyup', {self: self}, self.checkValue);
-        el.on('blur', {self: self}, self.checkValue);
+        if (this.options.keyup === true) {
+            el.on('keyup', {self: self}, self.checkValue);
+        }
+        if (this.options.blur === true) {
+            el.on('blur', {self: self}, self.checkValue);
+        }
     };
 
     $.checker.prototype.setOption = function(option, value) {
@@ -162,14 +169,14 @@
     };
 
     $.checker.prototype.replaceText = function() {
-        var el = $(this.el), text, pattern = this.options.replace || false;
-        if (pattern === false) {
+        var el = $(this.el), text, pattern = this.options.pattern || false, replace = this.options.replace || '';
+        if (typeof pattern === 'object') {
             if (el.val() !== '') {
                 text = el.val();
-                el.val(text.replace(pattern, ''));
+                el.val(text.replace(pattern, replace));
             } else {
                 text = el.text();
-                el.text(text.replace(pattern, ''));
+                el.text(text.replace(pattern, replace));
             }
         }
     };

@@ -1,6 +1,6 @@
 # Checker
 
-Checks if the field value already esists.
+Checks if the field value already exists.
 
 ## Getting Started
 Download the [production version][min] or the [development version][max].
@@ -33,6 +33,10 @@ _(Coming soon)_
 _(Coming soon)_
 
 ## Release History
+
+* **v1.3.0** - 2013-12-12
+   - Add option ```keyup``` and ```blur``` to control functions
+   - Add option regular expression ```pattern``` and ```replace```
 
 * **v1.2.0** - 2013-11-25
    - Add option ```notificationStyle```, ```showSuccessText``` and ```successCss```
