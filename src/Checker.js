@@ -39,7 +39,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.2.0';
+        this.version = '1.3.0';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -155,7 +155,7 @@
         if (el.val().length > self.options.num && key !== 13) {
             self.debug('info', 'Value ' + el.val().length + ' greater than ' + self.options.num);
             self.check();
-        } else if (el.val().length > self.options.num && key === 13) {
+        } else if (el.val().length === self.options.num && key !== 13) {
             self.callback_submit = false;
             self.check();
         } else if (el.val().length < self.options.num && key !== 13) {
