@@ -30,9 +30,19 @@ In your web page:
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+```
+jQuery(function($) {
+    $('input[name=login]').checker({
+        check: true
+    });
+});
+```
 
 ## Release History
+
+* **v1.3.1** - 2014-02-17
+   - Fixed error style when switching between valid and invalid value.
+   - Fix bug with value element ```options.num```
 
 * **v1.3.0** - 2013-12-12
    - Add option ```keyup``` and ```blur``` to control functions
