@@ -39,7 +39,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.3.0';
+        this.version = '1.3.1';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -202,6 +202,9 @@
                 css = self.validCss();
                 self.callback_submit = true;
             } else if (status.valid === 'invalid') {
+                if (self.options.notificationStyle === true) {
+                    self.errorCss();
+                }
                 css = self.invalidCss();
                 self.callback_submit = false;
             } else if (status.valid === 'error') {
@@ -271,7 +274,7 @@
         var self = this;
         self.debug('info', 'Block form submit');
         self.debug('info', ['callback_submit', self.callback_submit]);
-        $('form.form-register').on('click', 'a', function(event) {
+        $(self.options.blockForm).on('click', 'a', function(event) {
             self.debug('info', ['Click anchor', this]);
             if (!self.callback_submit) {
                 event.preventDefault();
