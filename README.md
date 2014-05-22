@@ -40,6 +40,9 @@ jQuery(function($) {
 
 ## Release History
 
+* **v1.3.3** - 2014-05-22
+   - Add option ```start``` to control function ```checkValue```.
+
 * **v1.3.2** - 2014-04-11
    - Creates the ```window.console``` if none.
 
