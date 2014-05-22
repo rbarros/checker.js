@@ -22,6 +22,15 @@
     //var document = window.document;
 
     // Collection method.
+    if (!window.console) {
+        var methods = "assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),
+          l = methods.length,
+          fn = function () {};
+
+          while (l--) {
+              window.console[methods[l]] = fn;
+          }
+    }
     $.fn.checker = function(options) {
         var checker, instance = (typeof options === "object" && options.instance) || false;
         if (instance) {
@@ -39,7 +48,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.3.1';
+        this.version = '1.3.2';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);

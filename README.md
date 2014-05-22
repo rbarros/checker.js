@@ -40,6 +40,9 @@ jQuery(function($) {
 
 ## Release History
 
+* **v1.3.2** - 2014-04-11
+   - Creates the ```window.console``` if none.
+
 * **v1.3.1** - 2014-02-17
    - Fixed error style when switching between valid and invalid value.
    - Fix bug with value element ```options.num```
