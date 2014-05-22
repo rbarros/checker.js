@@ -2,7 +2,7 @@
   "name": "Checker",
   "title": "Checker",
   "description": "Checks if the field value already exists.",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "homepage": "https://github.com/rbarros/checker.js",
   "author": {
     "name": "Ramon Barros",

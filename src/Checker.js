@@ -48,7 +48,7 @@
 
     // Static method.
     $.checker = function(element, options) {
-        this.version = '1.3.2';
+        this.version = '1.3.3';
         this.el = element;
         this.callback_submit = false; // Utilizado para bloquear o submit do formulário
         this.options = $.extend({}, $.checker.options, options);
@@ -62,6 +62,7 @@
     $.checker.options = {
         debug: false, // Ativa/desativa o debug do plugin
         check: false, // Ativa/desativa verificação por ajax, se desativado o plugin utilizará checkStatus
+        start: true, // Ativa/desativa a verificação no carregamento da página
         keyup: true, // Ativa/desativa verificação por keyup
         blur: true, // Ativa/desativa verificação por blur
         checkStatus: 'invalid', // Status que será assumido caso o check sejá true
@@ -127,7 +128,10 @@
         this.debug('log', 'Initialized');
         this.alterCss();
         this.alterPlaceholder();
-        this.checkValue();
+
+        if (this.options.start === true) {
+            this.checkValue();
+        }
         if (this.options.keyup === true) {
             el.on('keyup', {self: self}, self.checkValue);
         }
