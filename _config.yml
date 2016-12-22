@@ -1,0 +1,8 @@
+title: Checker.js
+description: Checks if the field value already exists.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
